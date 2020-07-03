@@ -23,8 +23,8 @@ node {
 	   def tomcatStart = "${tomcatHome}bin/startup.sh"
 	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
 	   
-	   sshagent (credentials: ['tomcat']) {
-	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war ubuntu@${tomcatDevIp}:${webApps}myweb.war"
+	   sshagent (credentials: ['tomcat-dev']) {
+	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war ubuntu@${tomcatDevIp}:${webApps}/"
           sh "ssh ubuntu@${tomcatDevIp} ${tomcatStop}"
 		  sh "ssh ubuntu@${tomcatDevIp} ${tomcatStart}"
        }
